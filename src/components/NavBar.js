@@ -122,7 +122,7 @@ const grid = (
             </g>
         </g>
     </svg>
-)
+);
 
 /*
 const logo  = (
