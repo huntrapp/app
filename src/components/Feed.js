@@ -32,7 +32,7 @@ const FeedContainer = styled.div`
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
     
-    @media(min-width: ${breakpoints.XL}px) and (max-width: ${breakpoints.XXL - 1 }px) {
+    @media(min-width: ${breakpoints.XL}px) and (max-width: ${breakpoints.XXL - 1}px) {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
     
@@ -66,7 +66,7 @@ const FeedError = styled.div`
 const reloadIcon = (
     <svg width="16" height="16" viewBox="0 0 16 16" style={{ position: 'relative', top: 2 }}>
         <path fill="#000" id="path0_fill"
-              d="M 13.64 2.35C 12.19 0.9 10.2 0 7.99 0C 3.57 0 2.28882e-07 3.58 2.28882e-07 8C 2.28882e-07 12.42 3.57 16 7.99 16C 11.72 16 14.83 13.45 15.72 10L 13.64 10C 12.82 12.33 10.6 14 7.99 14C 4.68 14 1.99 11.31 1.99 8C 1.99 4.69 4.68 2 7.99 2C 9.65 2 11.13 2.69 12.21 3.78L 8.99 7L 15.99 7L 15.99 0L 13.64 2.35Z"/>
+            d="M 13.64 2.35C 12.19 0.9 10.2 0 7.99 0C 3.57 0 2.28882e-07 3.58 2.28882e-07 8C 2.28882e-07 12.42 3.57 16 7.99 16C 11.72 16 14.83 13.45 15.72 10L 13.64 10C 12.82 12.33 10.6 14 7.99 14C 4.68 14 1.99 11.31 1.99 8C 1.99 4.69 4.68 2 7.99 2C 9.65 2 11.13 2.69 12.21 3.78L 8.99 7L 15.99 7L 15.99 0L 13.64 2.35Z"/>
     </svg>
 );
 
@@ -79,20 +79,20 @@ type FeedProps = {
 @connect(
     ({ feed, token }) => ({ feed, token }),
     dispatch => ({
-        getFeed: (token: string, page = 1) => dispatch(getFeed(token, page))
-    })
+        getFeed: (token: string, page = 1) => dispatch(getFeed(token, page)),
+    }),
 )
 class Feed extends Component {
     props: FeedProps;
     feedContainerBounds: ClientRect;
     feedContainer: HTMLElement;
 
-    componentDidMount() {
+    componentDidMount () {
         this.props.getFeed(this.props.token);
         window.addEventListener('resize', this.onResize);
     }
 
-    componentWillUnmount() {
+    componentWillUnmount () {
         window.removeEventListener('resize', this.onResize);
         if (this.feedContainer) {
             this.feedContainer.removeEventListener('scroll', this.onScroll);
@@ -103,7 +103,7 @@ class Feed extends Component {
         if (this.feedContainerBounds) {
             this.feedContainerBounds = this.feedContainer.getBoundingClientRect();
         }
-    }
+    };
 
     debounce: ?number = null;
 
@@ -112,15 +112,15 @@ class Feed extends Component {
             clearTimeout(this.debounce);
         }
         this.debounce = setTimeout(() => {
-            if ((window.scrollY + window.innerHeight) > (this.feedContainerBounds.bottom - INFINITE_SCROLL_OFFSET)
-                && this.props.feed.items.pages >= this.props.feed.items.page
-                && !this.props.feed.isLoading) {
+            if ((window.scrollY + window.innerHeight) > (this.feedContainerBounds.bottom - INFINITE_SCROLL_OFFSET) &&
+                this.props.feed.items.pages >= this.props.feed.items.page &&
+                !this.props.feed.isLoading) {
                 this.props.getFeed(this.props.token, this.props.feed.items.page + 1);
             }
         }, 2000);
-    }
+    };
 
-    render() {
+    render () {
         const { items: { docs }, error } = this.props.feed;
         return (
             <div style={{ height: '100%' }}>
@@ -141,15 +141,15 @@ class Feed extends Component {
                             key: index,
                             style: {
                                 translateY: spring(0),
-                                opacity: spring(1)
+                                opacity: spring(1),
                             },
                             data: {
-                                doc
-                            }
+                                doc,
+                            },
                         }))}
                         willEnter={() => ({
                             translateY: 180,
-                            opacity: 0
+                            opacity: 0,
                         })}>
                         {styles => (
                             <FeedContainer innerRef={(feedContainer: HTMLElement) => {
@@ -162,8 +162,8 @@ class Feed extends Component {
                                 {styles.map((config) =>
                                     <Card key={config.key} card={config.data.doc} style={{
                                         opacity: config.style.opacity,
-                                        transform: `translateY(${config.style.translateY}px)`
-                                    }}/>
+                                        transform: `translateY(${config.style.translateY}px)`,
+                                    }}/>,
                                 )}
                             </FeedContainer>
                         )}

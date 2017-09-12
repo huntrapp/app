@@ -1,5 +1,5 @@
 /**
- * the colors reducer acts as a cache (gets completely rehydrated), 
+ * the colors reducer acts as a cache (gets completely rehydrated),
  * so we don't have to calculate the vibrant color of a image again.
  */
 
@@ -12,8 +12,6 @@ export type ColorsState = {
 
 const defaultState: ColorsState = {};
 
-export type Action = SetColorAction;
-
 // actions
 type SetColorAction = {
     type: 'SET_COLOR',
@@ -22,6 +20,7 @@ type SetColorAction = {
     }
 };
 
+export type Action = SetColorAction;
 
 // reducer
 
@@ -43,6 +42,6 @@ export default (state: ColorsState = defaultState, action: Action) => {
 export const setColor = (url: string, color: string): SetColorAction => ({
     type: 'SET_COLOR',
     payload: {
-        [url]: color
-    }
+        [url]: color,
+    },
 });

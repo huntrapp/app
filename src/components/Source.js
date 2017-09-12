@@ -67,7 +67,7 @@ Source.defaultProps = {
             <DefaultLogoInner/>
         </DefaultLogo>
     ),
-    color: 'rgba(143, 143, 148, 0.75)'
+    color: 'rgba(143, 143, 148, 0.75)',
 };
 
 export default Source;

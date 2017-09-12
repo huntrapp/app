@@ -1,9 +1,10 @@
 {
-    "name": "idk",
+    "name": "quarry-app",
     "version": "0.1.0",
-    "private": true,
+    "private": false,
     "dependencies": {
         "es6-promisify": "^5.0.0",
+        "flow-bin": "^0.54.1",
         "geopattern": "^1.2.3",
         "localforage": "^1.5.0",
         "moment": "^2.18.1",
@@ -30,26 +31,25 @@
     "devDependencies": {
         "ansi-html": "0.0.5",
         "archiver": "^1.3.0",
-        "babel-core": "6.22.1",
-        "babel-eslint": "7.1.1",
-        "babel-jest": "18.0.0",
-        "babel-loader": "6.2.10",
-        "babel-plugin-transform-decorators-legacy": "^1.3.4",
-        "babel-preset-react-app": "^2.2.0",
-        "babel-runtime": "^6.20.0",
+        "babel-core": "^6.26.0",
+        "babel-eslint": "^8.0.0",
+        "babel-jest": "^21.0.2",
+        "babel-loader": "^7.1.2",
+        "babel-preset-react-app": "^3.0.2",
+        "babel-runtime": "^6.26.0",
         "case-sensitive-paths-webpack-plugin": "1.1.4",
         "chalk": "1.1.3",
         "connect-history-api-fallback": "1.3.0",
         "cross-spawn": "4.0.2",
         "detect-port": "1.1.0",
         "dotenv": "2.0.0",
-        "eslint": "3.16.1",
+        "eslint": "^4.6.1",
         "eslint-config-oberon": "^1.0.3",
         "eslint-loader": "1.6.0",
         "eslint-plugin-flowtype": "~2.30.4",
         "eslint-plugin-import": "2.0.1",
         "eslint-plugin-jsx-a11y": "4.0.0",
-        "eslint-plugin-react": "6.4.1",
+        "eslint-plugin-react": "^7.3.0",
         "extract-text-webpack-plugin": "1.0.1",
         "file-loader": "0.10.0",
         "fs-extra": "0.30.0",
@@ -104,9 +104,6 @@
     "babel": {
         "presets": [
             "react-app"
-        ],
-        "plugins": [
-            "transform-decorators-legacy"
         ]
     },
     "eslintConfig": {

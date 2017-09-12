@@ -5,8 +5,7 @@ import ProductHunt from '../components/cardcontents/ProductHunt';
 import Feedly from '../components/cardcontents/Feedly';
 
 export default (type: string) => {
-    
-    switch(type) {
+    switch (type) {
         case 'producthunt':
             return ProductHunt;
         case 'github':
@@ -16,6 +15,6 @@ export default (type: string) => {
         case 'feedly':
             return Feedly;
         default:
-            return DefaultContent; 
+            return DefaultContent;
     }
 };

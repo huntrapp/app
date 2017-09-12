@@ -27,11 +27,9 @@ const defaultState: FeedState = {
         page: 0,
         pages: 0,
         total: 0,
-        limit: 0
-    }
+        limit: 0,
+    },
 };
-
-export type Action = FeedFailureAction | FeedRequestAction | FeedSuccessAction;
 
 // actions
 export type FeedFailureAction = {
@@ -50,6 +48,8 @@ export type FeedSuccessAction = {
     payload: any
 };
 
+export type Action = FeedFailureAction | FeedRequestAction | FeedSuccessAction;
+
 // reducer
 
 export const reducer = (state: FeedState = defaultState, action: Action) => {
@@ -59,14 +59,14 @@ export const reducer = (state: FeedState = defaultState, action: Action) => {
             const items = 'feed' in action.payload ? action.payload.feed.items : defaultState.items;
             return {
                 ...state,
-                items
+                items,
             };
         }
         case 'FEED_REQUEST':
             return {
                 ...state,
                 error: action.error ? action.payload : null,
-                isLoading: action.error ? false : true
+                isLoading: !action.error,
             };
         case 'FEED_SUCCESS': {
             // backend returns a string for some reason...
@@ -76,16 +76,16 @@ export const reducer = (state: FeedState = defaultState, action: Action) => {
                 items: {
                     ...action.payload,
                     docs: page === 1 ? action.payload.docs : [...state.items.docs, ...action.payload.docs],
-                    page
+                    page,
                 },
-                isLoading: false
+                isLoading: false,
             };
         }
         case 'FEED_FAILURE':
             return {
                 ...state,
                 error: action.payload,
-                isLoading: false
+                isLoading: false,
             };
         default:
             return state;
@@ -99,8 +99,8 @@ export const getFeed = (token: string, page: number = 1) => ({
         endpoint: feedUrl(page),
         method: 'GET',
         headers: {
-            Authorization: `Bearer ${token}`
+            Authorization: `Bearer ${token}`,
         },
-        types: ['FEED_REQUEST', 'FEED_SUCCESS', 'FEED_FAILURE']
-    }
+        types: ['FEED_REQUEST', 'FEED_SUCCESS', 'FEED_FAILURE'],
+    },
 });

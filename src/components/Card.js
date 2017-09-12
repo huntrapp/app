@@ -12,13 +12,13 @@ const GridMargin = 0.5;
 const ColumnStartMap = {
     'small': 'span 1',
     'medium': 'span 2',
-    'large': 'span 2'
+    'large': 'span 2',
 };
 
 const RowStartMap = {
     'small': 'span 1',
     'medium': 'span 1',
-    'large': 'span 2'
+    'large': 'span 2',
 };
 
 const SizeMap = {
@@ -33,7 +33,7 @@ const SizeMap = {
     'large': `
         height: calc(${RowHeight * 2}rem + ${GridMargin * 2}rem);
         min-height:370px;
-    `
+    `,
 };
 
 const CardContainer = styled.div`
@@ -57,7 +57,7 @@ type CardProps = {
 
 const Card = (props: CardProps) => {
     const CardContent = getCardContentByType(props.card.type);
-    
+
     return (
         <CardContainer size={props.card.size} style={props.style}>
             <a href={props.card.url} target="_blank">

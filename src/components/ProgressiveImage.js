@@ -12,7 +12,7 @@ const canUseBackgrounds = document.createElement('detect').style.objectFit !== '
 
 const ImageContainer = styled.div`
     transition: opacity .5s, transform .5s;
-    opacity:${props => (props.isPlaceholder && props.active && !props.fullActive) || !props.isPlaceholder && props.active ? 1 : 0};
+    opacity:${props => (props.isPlaceholder && props.active && !props.fullActive) || (!props.isPlaceholder && props.active) ? 1 : 0};
     position:absolute;
     top:0;
     left:0;
@@ -51,7 +51,7 @@ type ProgressiveImageProps = {
     fallbackSeed: string,
     // callback to call if all images loaded successfully
     onFullLoad?: (srcImage: HTMLImageElement) => void,
-    // HTMLImageElement.crossOrigin value to pass on to images    
+    // HTMLImageElement.crossOrigin value to pass on to images
     crossOrigin: string,
     // color to blend images with
     blendWith?: string
@@ -62,57 +62,57 @@ export default class ProgressiveImage extends React.Component {
 
     static defaultProps = {
         blur: 10,
-        //always use background if it's not supported by the browser...
-        background: canUseBackgrounds
+        // always use background if it's not supported by the browser...
+        background: canUseBackgrounds,
     };
 
     state = {
         fullyLoaded: false,
         placeholderLoaded: false,
-        errorInLoading: false
+        errorInLoading: false,
     };
 
-    onFullLoad() {
+    onFullLoad () {
         if (this.refs.src.naturalWidth) {
             this.props.onFullLoad && this.props.onFullLoad(this.refs.src);
             this.setState({
                 fullyLoaded: true,
-                errorInLoading: false
+                errorInLoading: false,
             });
         } else {
             this.setState({
                 fullyLoaded: true,
-                errorInLoading: true
+                errorInLoading: true,
             });
         }
     }
 
-    onPlaceholderLoad() {
+    onPlaceholderLoad () {
         this.setState({
-            placeholderLoaded: true
+            placeholderLoaded: true,
         });
     }
 
-    onError() {
+    onError () {
         if (process.env.NODE_ENV !== 'production') {
-            console.error(`${this.props.src} could not be loaded`); //eslint-disable-line no-console
+            console.error(`${this.props.src} could not be loaded`); // eslint-disable-line no-console
         }
         this.setState({
-            errorInLoading: true
+            errorInLoading: true,
         });
     }
 
-    componentWillReceiveProps(newProps) {
+    componentWillReceiveProps (newProps) {
         if (newProps.src !== this.props.src) {
             this.setState({
                 fullyLoaded: false,
-                errorInLoading: false
+                errorInLoading: false,
             });
         }
     }
 
-    componentDidMount() {
-        //check if images are already loaded, if so, dispatch load immediately
+    componentDidMount () {
+        // check if images are already loaded, if so, dispatch load immediately
         if (this.refs.src && this.refs.src.complete) {
             this.onFullLoad();
         } else if (this.refs.placeholder && this.refs.placeholder.complete) {
@@ -120,7 +120,7 @@ export default class ProgressiveImage extends React.Component {
         }
     }
 
-    render() {
+    render () {
         const { src, srcRetina, placeholder, blur, background, fallbackSeed, blendWith } = this.props;
         let backgroundImage = 'none';
 
@@ -130,28 +130,31 @@ export default class ProgressiveImage extends React.Component {
                 backgroundImage = `url(${srcRetina || src})`;
             }
         }
-        
+
         return (
             <div style={this.props.style}>
-                { placeholder && !this.state.errorInLoading && (
-                    <ImageContainer isPlaceholder active={this.state.placeholderLoaded} fullActive={this.state.fullyLoaded}>
+                {placeholder && !this.state.errorInLoading && (
+                    <ImageContainer isPlaceholder active={this.state.placeholderLoaded}
+                        fullActive={this.state.fullyLoaded}>
                         <img ref="placeholder" src={placeholder} onLoad={() => this.onPlaceholderLoad()}
-                             crossOrigin={this.props.crossOrigin}
-                             style={{
-                                 filter: `blur(${blur}px)`
-                             }}
+                            crossOrigin={this.props.crossOrigin}
+                            style={{
+                                filter: `blur(${blur}px)`,
+                            }}
                         />
                     </ImageContainer>
                 )}
-                { src && !this.state.errorInLoading && (
-                    <ImageContainer active={this.state.fullyLoaded} backgroundImage={backgroundImage} blendWith={blendWith}>
+                {src && !this.state.errorInLoading && (
+                    <ImageContainer active={this.state.fullyLoaded} backgroundImage={backgroundImage}
+                        blendWith={blendWith}>
                         <img style={{ opacity: background ? 0 : 1 }} ref="src" src={src}
-                             onLoad={() => this.onFullLoad()} onError={ () => this.onError() }
-                             crossOrigin={this.props.crossOrigin}/>
+                            onLoad={() => this.onFullLoad()} onError={() => this.onError()}
+                            crossOrigin={this.props.crossOrigin}/>
                     </ImageContainer>
                 )}
-                { (this.state.errorInLoading || !src) && (
-                    <ImageContainer active={!this.state.fullyLoaded} backgroundImage={GeoPattern.generate(fallbackSeed).toDataUrl()}/>
+                {(this.state.errorInLoading || !src) && (
+                    <ImageContainer active={!this.state.fullyLoaded}
+                        backgroundImage={GeoPattern.generate(fallbackSeed).toDataUrl()}/>
                 )}
             </div>
         );

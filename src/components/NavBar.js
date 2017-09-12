@@ -63,8 +63,10 @@ const sort = (
                 <g id="icons/left">
                     <g transform="translate(16.000000, 20.000000)">
                         <g id="sort">
-                            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
-                            <path d="M3,18 L9,18 L9,16 L3,16 L3,18 Z M3,6 L3,8 L21,8 L21,6 L3,6 Z M3,13 L15,13 L15,11 L3,11 L3,13 Z" id="path0_fill" fillOpacity="0.87" fill="#000000" fillRule="nonzero"></path>
+                            <rect id="Rectangle" x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M3,18 L9,18 L9,16 L3,16 L3,18 Z M3,6 L3,8 L21,8 L21,6 L3,6 Z M3,13 L15,13 L15,11 L3,11 L3,13 Z"
+                                id="path0_fill" fillOpacity="0.87" fill="#000000" fillRule="nonzero" />
                         </g>
                     </g>
                 </g>
@@ -80,8 +82,10 @@ const stream = (
                 <g id="icons/right">
                     <g transform="translate(1320.000000, 20.000000)">
                         <g id="stream" transform="translate(40.000000, 0.000000)">
-                            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
-                            <path d="M4,10 L20,10 L20,14 L4,14 L4,10 Z M4,15 L20,15 L20,19 L4,19 L4,15 Z M4,5 L20,5 L20,9 L4,9 L4,5 Z" id="path1_fill" fill="#000000" fillRule="nonzero"></path>
+                            <rect id="Rectangle" x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M4,10 L20,10 L20,14 L4,14 L4,10 Z M4,15 L20,15 L20,19 L4,19 L4,15 Z M4,5 L20,5 L20,9 L4,9 L4,5 Z"
+                                id="path1_fill" fill="#000000" fillRule="nonzero" />
                         </g>
                     </g>
                 </g>
@@ -97,8 +101,10 @@ const options = (
                 <g id="icons/right">
                     <g transform="translate(1320.000000, 20.000000)">
                         <g id="options" transform="translate(80.000000, 0.000000)">
-                            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
-                            <path d="M12,8 C13.1,8 14,7.1 14,6 C14,4.9 13.1,4 12,4 C10.9,4 10,4.9 10,6 C10,7.1 10.9,8 12,8 Z M12,10 C10.9,10 10,10.9 10,12 C10,13.1 10.9,14 12,14 C13.1,14 14,13.1 14,12 C14,10.9 13.1,10 12,10 Z M12,16 C10.9,16 10,16.9 10,18 C10,19.1 10.9,20 12,20 C13.1,20 14,19.1 14,18 C14,16.9 13.1,16 12,16 Z" id="path0_fill" fillOpacity="0.87" fill="#000000" fillRule="nonzero"></path>
+                            <rect id="Rectangle" x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M12,8 C13.1,8 14,7.1 14,6 C14,4.9 13.1,4 12,4 C10.9,4 10,4.9 10,6 C10,7.1 10.9,8 12,8 Z M12,10 C10.9,10 10,10.9 10,12 C10,13.1 10.9,14 12,14 C13.1,14 14,13.1 14,12 C14,10.9 13.1,10 12,10 Z M12,16 C10.9,16 10,16.9 10,18 C10,19.1 10.9,20 12,20 C13.1,20 14,19.1 14,18 C14,16.9 13.1,16 12,16 Z"
+                                id="path0_fill" fillOpacity="0.87" fill="#000000" fillRule="nonzero" />
                         </g>
                     </g>
                 </g>
@@ -114,8 +120,10 @@ const grid = (
                 <g id="icons/right">
                     <g transform="translate(1320.000000, 20.000000)">
                         <g id="grid">
-                            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
-                            <path d="M4,19 L13,19 L13,12.5 L4,12.5 L4,19 Z M4,11.5 L11,11.5 L11,5 L4,5 L4,11.5 Z M14,19 L20,19 L20,12.5 L14,12.5 L14,19 Z M12,5 L12,11.5 L20,11.5 L20,5 L12,5 Z" id="path0_fill" fillOpacity="0.87" fill="#000000" fillRule="nonzero"></path>
+                            <rect id="Rectangle" x="0" y="0" width="24" height="24" />
+                            <path
+                                d="M4,19 L13,19 L13,12.5 L4,12.5 L4,19 Z M4,11.5 L11,11.5 L11,5 L4,5 L4,11.5 Z M14,19 L20,19 L20,12.5 L14,12.5 L14,19 Z M12,5 L12,11.5 L20,11.5 L20,5 L12,5 Z"
+                                id="path0_fill" fillOpacity="0.87" fill="#000000" fillRule="nonzero" />
                         </g>
                     </g>
                 </g>

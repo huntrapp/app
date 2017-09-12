@@ -27,12 +27,12 @@ type FeedlyProps = {
 const mapStateToProps = ({ colors, logos }: RootState, { card: { data } }: FeedlyProps) => ({
     color: data.visual && 'edgeCacheUrl' in data.visual && data.visual.edgeCacheUrl in colors ? colors[data.visual.edgeCacheUrl] : null,
     logoColor: data.logoUrl in colors ? colors[data.logoUrl] : null,
-    logo: data.logoUrl in logos ? logos[data.logoUrl] : data.logoUrl
+    logo: data.logoUrl in logos ? logos[data.logoUrl] : data.logoUrl,
 });
 
 const mapDispatchToProps = (dispatch: Function) => ({
     setColor: (url: string, color: string) => dispatch(setColor(url, color)),
-    setLogo: (logoUrl: string, dataUrl: string) => dispatch(setLogo(logoUrl, dataUrl))
+    setLogo: (logoUrl: string, dataUrl: string) => dispatch(setLogo(logoUrl, dataUrl)),
 });
 
 const FeedlyContainer = styled.div`
@@ -79,7 +79,7 @@ const FeedlyLogo = styled.img`
 class Feedly extends Component {
     props: FeedlyProps;
 
-    async onVisualLoad(element: HTMLImageElement) {
+    async onVisualLoad (element: HTMLImageElement) {
         if (!this.props.color) {
             const vibrant = Vibrant.from(element);
             try {
@@ -89,13 +89,13 @@ class Feedly extends Component {
                     this.props.setColor(element.src, swatch.getHex());
                 }
             } catch (ex) {
-                console.error(ex); //eslint-disable-line no-console
+                console.error(ex); // eslint-disable-line no-console
                 Raven.captureException(ex);
             }
         }
     }
-    
-    onLogoLoad(event: Event & { target: HTMLImageElement }) {
+
+    onLogoLoad (event: Event & { target: HTMLImageElement }) {
         const { target } = event;
         if (target.src.startsWith('data:')) {
             target.style.opacity = '1';
@@ -116,7 +116,7 @@ class Feedly extends Component {
                     }
                 } catch (ex) {
                     Raven.captureException(ex);
-                    console.error(ex);
+                    console.error(ex); // eslint-disable-line no-console
                 }
             }
 
@@ -128,7 +128,7 @@ class Feedly extends Component {
         });
     }
 
-    render() {
+    render () {
         const hasContent = !!this.props.card.data.content;
         return (
             <FeedlyContainer>
@@ -138,22 +138,25 @@ class Feedly extends Component {
                         fallbackSeed={this.props.card._id}
                         onFullLoad={(...args) => this.onVisualLoad(...args)}
                         crossOrigin="anonymous"
-                        background={true}
+                        background
                         blendWith={this.props.color ? this.props.color : this.props.logoColor}/>
 
-                    <Source logoElement={(
-                        <div>
-                            {this.props.card.data.logoUrl && (
-                                <FeedlyLogo alt={this.props.card.name} crossOrigin="anonymous" src={this.props.logo}
-                                            onLoad={(...args) => this.onLogoLoad(...args)}/>
-                            )}
-                        </div>
-                    )} style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 3 }}
-                            color={this.props.logoColor ? this.props.logoColor : 'rgba(0, 0, 0, 0.6)'} description={this.props.card.name}/>
+                    <Source
+                        logoElement={(
+                            <div>
+                                {this.props.card.data.logoUrl && (
+                                    <FeedlyLogo alt={this.props.card.name} crossOrigin="anonymous" src={this.props.logo}
+                                        onLoad={(...args) => this.onLogoLoad(...args)}/>
+                                )}
+                            </div>
+                        )}
+                        style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 3 }}
+                        color={this.props.logoColor ? this.props.logoColor : 'rgba(0, 0, 0, 0.6)'}
+                        description={this.props.card.name}/>
                     <FeedlyText size={this.props.card.size} hasContent={hasContent}
-                                contentDirection={hasContent ? this.props.card.data.content.direction : 'ltr'}
-                                direction={this.props.card.data.direction}
-                                color={'#FFF'}>
+                        contentDirection={hasContent ? this.props.card.data.content.direction : 'ltr'}
+                        direction={this.props.card.data.direction}
+                        color={'#FFF'}>
                         <h1>{cleanHTML(this.props.card.title)}</h1>
                     </FeedlyText>
                     <div style={{ flexGrow: 1 }}/>

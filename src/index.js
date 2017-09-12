@@ -6,21 +6,21 @@ import createStore from './createStore';
 import Raven from 'raven-js';
 import config from './constants/config';
 
-(async() => {
+(async () => {
     Raven.config(config.publicDSN).install();
 
-    window.onunhandledrejection = function(data) {
+    window.onunhandledrejection = function (data) {
         Raven.captureException(data.reason);
     };
-    
+
     try {
         const store = await createStore();
         const renderApp = (App) => {
             ReactDOM.render(
                 <Provider store={store}>
-                    <App />
+                    <App/>
                 </Provider>,
-                document.getElementById('root')
+                document.getElementById('root'),
             );
         };
 
@@ -32,8 +32,8 @@ import config from './constants/config';
                 renderApp(NextApp);
             });
         }
-    } catch(ex) {
-        console.error(ex); //eslint-disable-line no-console
+    } catch (ex) {
+        console.error(ex); // eslint-disable-line no-console
         Raven.captureException(ex);
     }
 })();

@@ -39,34 +39,34 @@ const reducer = combineReducers({
     token,
     colors,
     logos,
-    messages
+    messages,
 });
 export default async () => {
     const saga: SagaMiddleware = createSagaMiddleware();
-    let middlewares = [apiMiddleware, saga];
-    if(process.env.NODE_ENV !== 'production' && isChromeExtension) {
+    const middlewares = [apiMiddleware, saga];
+    if (process.env.NODE_ENV !== 'production' && isChromeExtension) {
         // we only use logger middleware when running from the extension, because we have no other choice.
         // (redux devtools can't access other extensions)
         middlewares.push(logger);
     }
-    
+
     const store = createStore(reducer, undefined, composeEnhancers(
         applyMiddleware(...middlewares),
-        autoRehydrate()
+        autoRehydrate(),
     ));
-    
+
     let userStorage = SyncStorage;
-    if(!isChromeExtension) {
+    if (!isChromeExtension) {
         // eslint-disable-next-line no-console
         console.warn('createStore: sync storage not available, falling back to localForage');
         userStorage = localForage;
     }
-    
+
     saga.run(messagesSaga);
-    
+
     // we persist to 2 separate storages, 1 for mission critical data (user settings etc), and one for caching
     await persistStore(store, { userStorage, whitelist: ['token'], blacklist: ['messages'] });
     await persistStore(store, { localForage, blacklist: ['token', 'messages'] });
-    
+
     return store;
 };

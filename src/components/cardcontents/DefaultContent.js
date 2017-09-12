@@ -16,11 +16,11 @@ const DefaultContentContainer = styled.div`
         content:"";
         display:block;
         background-color: rgba(0, 0, 0, 0.50);
-		position: absolute;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
     }
 `;
 
@@ -65,7 +65,7 @@ const DefaultContent = (props: DefaultContentProps) => (
         <DefaultContentHolder>
             <DefaultContentText size={props.card.size}>
                 <h1>{props.card.title}</h1>
-                {/*<p>Card description</p>*/}
+                {/* <p>Card description</p> */}
             </DefaultContentText>
             <Source description={`From ${props.card.type}`}/>
         </DefaultContentHolder>

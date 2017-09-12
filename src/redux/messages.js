@@ -8,8 +8,6 @@ export type MessagesState = IMessage[];
 
 const defaultState: MessagesState = [];
 
-export type Action = AddMessageAction | RemoveMessageAction;
-
 // actions
 type AddMessageAction = {
     type: 'ADD_MESSAGE',
@@ -22,6 +20,8 @@ type RemoveMessageAction = {
         id: number
     }
 };
+
+export type Action = AddMessageAction | RemoveMessageAction;
 
 // reducer
 export default (state: MessagesState = defaultState, action: Action): MessagesState => {
@@ -38,12 +38,12 @@ export default (state: MessagesState = defaultState, action: Action): MessagesSt
 // action creators
 export const addMessage = (text: string, type: MessageType = 'message', icon: MessageIcon = null, id: number = Math.round(Math.random() * 100000), expiration: number = 5000): AddMessageAction => ({
     type: 'ADD_MESSAGE',
-    payload: { text, type, icon, id, expiration }
+    payload: { text, type, icon, id, expiration },
 });
 
 export const removeMessage = (id: number): RemoveMessageAction => ({
     type: 'REMOVE_MESSAGE',
     payload: {
-        id
-    }
+        id,
+    },
 });

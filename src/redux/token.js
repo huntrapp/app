@@ -5,13 +5,13 @@
 export type TokenState = string;
 const defaultState: TokenState = '';
 
-export type Action = TokenStateAction;
-
 // actions
 type TokenStateAction = {
     type: 'TOKEN_STATE',
     payload: string
 };
+
+export type Action = TokenStateAction;
 
 // reducer
 export const reducer = (state: TokenState = defaultState, action: Action) => {
@@ -26,5 +26,5 @@ export const reducer = (state: TokenState = defaultState, action: Action) => {
 // action creators
 export const setToken = (token: string) => ({
     type: 'SET_TOKEN',
-    payload: token
+    payload: token,
 });

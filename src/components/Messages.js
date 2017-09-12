@@ -26,35 +26,35 @@ const MessagesContainer = styled.div`
 
 const Messages = (props: MessagesProps) => (
     <MessagesContainer>
-        <TransitionMotion styles={props.messages.map((message: IMessage, index: number) => ({
-            key: index,
-            data: {
-                ...message
-            },
-            style: {
-                opacity: spring(1)
-            }
-        }))}
-        willLeave={() => ({
-            opacity: spring(0)
-        })}
-        willEnter={() => ({
-            opacity: 0
-        })}>
-                {styles => (
-                    <div>
-                        {styles.map((style) => (
-                            <div key={style.key}
-                                 style={{
-                                     opacity: style.style.opacity
-                                 }}>
-                                <Message message={style.data}/>
-                            </div>
-                        ))} 
-                    </div>
-                )}
+        <TransitionMotion
+            styles={props.messages.map((message: IMessage, index: number) => ({
+                key: index,
+                data: {
+                    ...message
+                },
+                style: {
+                    opacity: spring(1),
+                },
+            }))}
+            willLeave={() => ({
+                opacity: spring(0),
+            })}
+            willEnter={() => ({
+                opacity: 0,
+            })}>
+            {styles => (
+                <div>
+                    {styles.map((style) => (
+                        <div key={style.key}
+                            style={{
+                                opacity: style.style.opacity,
+                            }}>
+                            <Message message={style.data}/>
+                        </div>
+                    ))}
+                </div>
+            )}
         </TransitionMotion>
-        
     </MessagesContainer>
 );
 

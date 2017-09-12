@@ -7,8 +7,6 @@ export type LogosState = {
 
 const defaultState: LogosState = {};
 
-export type Action = SetLogoAction | ResetLogosAction;
-
 // actions
 type SetLogoAction = {
     type: 'SET_LOGO',
@@ -20,6 +18,8 @@ type SetLogoAction = {
 type ResetLogosAction = {
     type: 'RESET_LOGOS'
 };
+
+export type Action = SetLogoAction | ResetLogosAction;
 
 // reducer
 export default (state: LogosState = defaultState, action: Action) => {
@@ -40,10 +40,10 @@ export default (state: LogosState = defaultState, action: Action) => {
 export const setLogo = (logoUrl: string, dataUrl: string) => ({
     type: 'SET_LOGO',
     payload: {
-        [logoUrl]: dataUrl
-    }
+        [logoUrl]: dataUrl,
+    },
 });
 
 export const resetLogos = (): ResetLogosAction => ({
-    type: 'RESET_LOGOS'
+    type: 'RESET_LOGOS',
 });

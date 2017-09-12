@@ -7,7 +7,7 @@ type ButtonProps = {
     icon?: React.Element<*>,
     children?: React.Element<*>,
     primary?: boolean,
-    onClick?: (e: MouseEvent) => void 
+    onClick?: (e: MouseEvent) => void
 };
 
 const ButtonContainer = styled.button`

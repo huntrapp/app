@@ -12,9 +12,9 @@ type MessageProps = {
 };
 
 const iconMap = {
-    'cloud_off': cloudOffIcon, 
-    'check': checkIcon, 
-    'warning': warningIcon 
+    'cloud_off': cloudOffIcon,
+    'check': checkIcon,
+    'warning': warningIcon,
 };
 
 const MessageContainer = styled.div`
