@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import Button from 'material-ui/Button';
 
 const NavBarContainer = styled.nav`
     display: flex;
@@ -10,16 +11,6 @@ const NavBarContainer = styled.nav`
     align-items: center;
     width: 100%;
     height: 5.6rem;
-    
-    h1 {
-        color: rgba(0, 0, 0, 0.87);
-        letter-spacing: 3.2px;
-        font-family: "Cabin", serif;
-        font-weight: 700;
-        font-size: 2.4rem;
-        margin-left: 1.5rem;
-        text-align: center;
-    }
     
     .left {
         margin-left: 2.4rem;
@@ -37,21 +28,25 @@ const NavBarContainer = styled.nav`
         justify-content: flex-end;
         display: flex;
     }
+        
+    button {
+        min-width: 3.5rem;
+        margin-right: .5rem;
+    }
 `;
 
 const NavBar = () => (
     <NavBarContainer>
         <div className="left">
-            {sort}
+            <Button dense>{sort}</Button>
         </div>
         <div className="center">
-            {/* {logo} */}
-            <h1>Quarry</h1>
+             {doggo}
         </div>
         <div className="right">
-            {grid}
-            {stream}
-            {options}
+            <Button dense>{grid}</Button>
+            <Button dense>{stream}</Button>
+            <Button dense>{options}</Button>
         </div>
     </NavBarContainer>
 );
@@ -132,8 +127,7 @@ const grid = (
     </svg>
 );
 
-/*
-const logo  = (
+const doggo  = (
     <svg width="38" height="44" viewBox="0 0 751 874">
         <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Artboard" transform="translate(-125.000000, -63.000000)" fillRule="nonzero">
@@ -224,5 +218,5 @@ const logo  = (
         </g>
     </svg>
 );
-*/
+
 export default NavBar;

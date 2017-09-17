@@ -7,6 +7,7 @@
         "flow-bin": "^0.54.1",
         "geopattern": "^1.2.3",
         "localforage": "^1.5.0",
+        "material-ui": "^1.0.0-beta.10",
         "moment": "^2.18.1",
         "node-vibrant": "^3.0.0-alpha.2",
         "raven-js": "^3.16.0",
