@@ -76,12 +76,6 @@ type FeedProps = {
     getFeed: (token: string, page: ?number) => void
 };
 
-@connect(
-    ({ feed, token }) => ({ feed, token }),
-    dispatch => ({
-        getFeed: (token: string, page = 1) => dispatch(getFeed(token, page)),
-    }),
-)
 class Feed extends Component {
     props: FeedProps;
     feedContainerBounds: ClientRect;
@@ -174,4 +168,9 @@ class Feed extends Component {
     }
 }
 
-export default Feed;
+const mapStateToProps = ({ feed, token }) => ({ feed, token });
+const mapDispatchToProps = dispatch => ({
+    getFeed: (token: string, page = 1) => dispatch(getFeed(token, page)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
